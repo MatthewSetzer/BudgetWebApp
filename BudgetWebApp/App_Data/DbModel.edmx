@@ -1,0 +1,136 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="BudgetAppModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="BudgetSavings">
+          <Key>
+            <PropertyRef Name="Username" />
+          </Key>
+          <Property Name="Username" Type="varchar" MaxLength="55" Nullable="false" />
+          <Property Name="MonthlySavings" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="BudgetValues">
+          <Key>
+            <PropertyRef Name="Username" />
+          </Key>
+          <Property Name="Username" Type="varchar" MaxLength="55" Nullable="false" />
+          <Property Name="FinalBudget" Type="int" />
+          <Property Name="IncomeLessTax" Type="int" />
+          <Property Name="MonthlyExpenses" Type="int" />
+          <Property Name="HomeLoanExpense" Type="int" />
+          <Property Name="VehicleExpense" Type="int" />
+          <Property Name="RentExpense" Type="int" />
+        </EntityType>
+        <EntityType Name="UserCredentials">
+          <Key>
+            <PropertyRef Name="Username" />
+          </Key>
+          <Property Name="Username" Type="varchar" MaxLength="55" Nullable="false" />
+          <Property Name="Email" Type="varchar" MaxLength="255" />
+          <Property Name="Password" Type="varchar" MaxLength="255" />
+        </EntityType>
+        <EntityContainer Name="BudgetAppModelStoreContainer">
+          <EntitySet Name="BudgetSavings" EntityType="Self.BudgetSavings" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="BudgetValues" EntityType="Self.BudgetValues" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="UserCredentials" EntityType="Self.UserCredentials" Schema="dbo" store:Type="Tables" />
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="BudgetAppModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="BudgetSaving">
+          <Key>
+            <PropertyRef Name="Username" />
+          </Key>
+          <Property Name="Username" Type="String" MaxLength="55" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="MonthlySavings" Type="Int32" Nullable="false" />
+        </EntityType>
+        <EntityType Name="BudgetValue">
+          <Key>
+            <PropertyRef Name="Username" />
+          </Key>
+          <Property Name="Username" Type="String" MaxLength="55" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="FinalBudget" Type="Int32" />
+          <Property Name="IncomeLessTax" Type="Int32" />
+          <Property Name="MonthlyExpenses" Type="Int32" />
+          <Property Name="HomeLoanExpense" Type="Int32" />
+          <Property Name="VehicleExpense" Type="Int32" />
+          <Property Name="RentExpense" Type="Int32" />
+        </EntityType>
+        <EntityType Name="UserCredential">
+          <Key>
+            <PropertyRef Name="Username" />
+          </Key>
+          <Property Name="Username" Type="String" MaxLength="55" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Email" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="Password" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityContainer Name="BudgetAppEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="BudgetSavings" EntityType="Self.BudgetSaving" />
+          <EntitySet Name="BudgetValues" EntityType="Self.BudgetValue" />
+          <EntitySet Name="UserCredentials" EntityType="Self.UserCredential" />
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="BudgetAppModelStoreContainer" CdmEntityContainer="BudgetAppEntities">
+          <EntitySetMapping Name="BudgetSavings">
+            <EntityTypeMapping TypeName="BudgetAppModel.BudgetSaving">
+              <MappingFragment StoreEntitySet="BudgetSavings">
+                <ScalarProperty Name="Username" ColumnName="Username" />
+                <ScalarProperty Name="MonthlySavings" ColumnName="MonthlySavings" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="BudgetValues">
+            <EntityTypeMapping TypeName="BudgetAppModel.BudgetValue">
+              <MappingFragment StoreEntitySet="BudgetValues">
+                <ScalarProperty Name="Username" ColumnName="Username" />
+                <ScalarProperty Name="FinalBudget" ColumnName="FinalBudget" />
+                <ScalarProperty Name="IncomeLessTax" ColumnName="IncomeLessTax" />
+                <ScalarProperty Name="MonthlyExpenses" ColumnName="MonthlyExpenses" />
+                <ScalarProperty Name="HomeLoanExpense" ColumnName="HomeLoanExpense" />
+                <ScalarProperty Name="VehicleExpense" ColumnName="VehicleExpense" />
+                <ScalarProperty Name="RentExpense" ColumnName="RentExpense" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="UserCredentials">
+            <EntityTypeMapping TypeName="BudgetAppModel.UserCredential">
+              <MappingFragment StoreEntitySet="UserCredentials">
+                <ScalarProperty Name="Username" ColumnName="Username" />
+                <ScalarProperty Name="Email" ColumnName="Email" />
+                <ScalarProperty Name="Password" ColumnName="Password" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="true" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>
